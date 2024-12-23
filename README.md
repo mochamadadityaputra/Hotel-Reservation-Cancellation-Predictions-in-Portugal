@@ -1,4 +1,4 @@
-# BetaGroup_JC_DS_OL_15_FinalProject
+# Hotel Reservation Cancellation Predictions in Portugal
 
 Anggota Kelompok:
 
