@@ -11,7 +11,7 @@ Yoga Lafrianto - JCDSOL-015-018
 
 # Link Tableau
 - https://public.tableau.com/app/profile/tamara.puspita/viz/HotelCancellationAnalysis_FinalProject/Dashboard1
-- 
+
 # Link Power BI
 - https://drive.google.com/file/d/1q71xAqTkJ28e35QRMruEUWXb78h8ZcB4/view?usp=sharing
 
