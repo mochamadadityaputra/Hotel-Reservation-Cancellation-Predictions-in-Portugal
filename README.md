@@ -1,321 +1,236 @@
-# Hotel Reservation Cancellation Predictions in Portugal
+# 🏨 Hotel Reservation Cancellation Predictions in Portugal
 
-Anggota Kelompok:
+> Predicting hotel booking cancellations using machine learning to reduce revenue loss and support smarter overbooking strategies.
 
-Tamara Puspita Ayu - JCDSOL-015-012
+**Group Project** | Purwadhika Digital Technology School — JCDSOL-015
+Team: Mochamad Aditya P. Y. K · Tamara Puspita Ayu · Yoga Lafrianto
 
-Mochamad Aditya P. Y. K - JCDSOL-015-011
+---
 
-Yoga Lafrianto - JCDSOL-015-018
+## 📊 Dashboard Preview
 
+> **Power BI Dashboard**
+> 📎 [View on Google Drive](https://drive.google.com/file/d/1q71xAqTkJ28e35QRMruEUWXb78h8ZcB4/view?usp=sharing)
 
-# Link Tableau
-- https://public.tableau.com/app/profile/tamara.puspita/viz/HotelCancellationAnalysis_FinalProject/Dashboard1
+> **Tableau Dashboard**
+> 📎 
 
-# Link Power BI
-- https://drive.google.com/file/d/1q71xAqTkJ28e35QRMruEUWXb78h8ZcB4/view?usp=sharing
 
-# Link Colab Google
-- https://colab.research.google.com/drive/1vgdbcMkygOm8bZQcYS1MVrx6550NtOYy 
 
 
-# Background
+---
 
-Antara tahun 2015 hingga 2017, industri perhotelan di Portugal mengalami pertumbuhan yang signifikan, didukung oleh peningkatan jumlah wisatawan internasional dan pengembangan infrastruktur pariwisata. Selama periode ini, Portugal menjadi salah satu tujuan wisata utama di Eropa, dengan kontribusi sektor pariwisata terhadap GDP mencapai sekitar 20% pada 2017. Strategi diversifikasi pasar yang dilakukan pemerintah berhasil mengurangi ketergantungan historis pada pasar Inggris, menarik lebih banyak wisatawan dari negara seperti Spanyol, Prancis, Jerman, dan pasar-pasar baru seperti Kanada dan Brasil [link text](https://horwathhtl.com/publication/market-report-portugal-market-overview/). Data yang berasal dari Kaggle [link text](https://www.kaggle.com/datasets/jessemostipak/hotel-booking-demand/data) dan Science Direct [link text](https://www.sciencedirect.com/science/article/pii/S2352340918315191) ini memberikan wawasan mengenai pola pemesanan, durasi tinggal, dan perilaku pembatalan, yang penting bagi pengelolaan operasional hotel.
+## 📋 Table of Contents
 
-Karena hotel memiliki inventaris tetap dan menjual “produk” yang mudah rusak, sebagai cara untuk menyediakan kamar yang tepat bagi tamu yang tepat, pada waktu yang tepat, hotel menerima pemesanan di muka. Pemesanan merupakan kontrak antara pelanggan dan hotel (Talluri & Van Ryzin, 2004). Kontrak ini memberikan pelanggan hak untuk menggunakan layanan di masa mendatang dengan harga yang telah ditetapkan, biasanya dengan opsi untuk membatalkan kontrak sebelum layanan diberikan. Meskipun pemesanan di muka dianggap sebagai prediktor utama kinerja prakiraan hotel (Smith, Parsa, Bujisic, & van der Rest, 2015), opsi untuk membatalkan layanan ini menempatkan risiko pada pihak hotel, karena hotel harus menjamin kamar bagi pelanggan yang memenuhi pemesanan mereka, tetapi pada saat yang sama, harus menanggung biaya peluang dari kapasitas kosong ketika pelanggan membatalkan pemesanan atau tidak muncul (Talluri & Van Ryzin, 2004). Pembatalan terjadi apabila pelanggan mengakhiri kontrak sebelum kedatangannya, sedangkan ketidakhadiran terjadi apabila pelanggan tidak memberi tahu pihak hotel dan gagal check-in. [link text](https://www.researchgate.net/publication/320625331_Predicting_hotel_booking_cancellations_to_decrease_uncertainty_and_increase_revenue)
-  
+- [Problem Statement](#problem-statement)
+- [Project Objectives](#project-objectives)
+- [Dataset Overview](#dataset-overview)
+- [Methodology](#methodology)
+- [Model Results](#model-results)
+- [Business Impact](#business-impact)
+- [Key Findings & Recommendations](#key-findings--recommendations)
+- [Tech Stack](#tech-stack)
+- [Repository Structure](#repository-structure)
 
-# Problem Statement
-Pembatalan pemesanan hotel telah menjadi tantangan besar dalam industri perhotelan, memengaruhi akurasi prakiraan permintaan, efisiensi operasional, dan pendapatan. Ketidakmampuan untuk mengantisipasi pembatalan berisiko menyebabkan kamar kosong yang tidak terpakai atau, sebaliknya, overbooking, yang dapat merusak reputasi hotel dan memengaruhi pengalaman tamu secara negatif.
+---
 
-  Dalam menghadapi masalah ini, penerapan teknologi machine learning menjadi solusi potensial yang sangat relevan. Dengan kemampuannya untuk menganalisis pola data yang kompleks, machine learning dapat membantu hotel membangun model prediktif yang lebih akurat dibandingkan pendekatan konvensional. Teknologi ini memungkinkan pengolahan data besar secara efisien untuk mengidentifikasi pola tersembunyi dan atribut utama yang memengaruhi pembatalan.
+## Problem Statement
 
-   Untuk itu, penelitian ini mengajukan beberapa pertanyaan utama:
-   1. Faktor Utama:
-    - Apa saja variabel atau atribut yang paling memengaruhi kemungkinan pembatalan pemesanan?
-   2.  Akurasi Model:
-    - Sejauh mana model machine learning dapat memprediksi pembatalan pemesanan dengan tingkat akurasi yang tinggi?
-    - Bagaimana performa model diukur berdasarkan metrik utama seperti recall dan precision?
-   3. Keunggulan Machine Learning:
-    - Bagaimana penerapan machine learning meningkatkan kemampuan analisis dibandingkan metode konvensional dalam industri hotel?
+Hotel cancellations represent one of the most costly operational challenges in the hospitality industry. When cancellations go unpredicted, hotels face two equally damaging outcomes: empty rooms that generate zero revenue, or aggressive overbooking that damages guest experience and reputation.
 
-# Goals
+Between 2015–2017, Portugal's hotel industry experienced significant growth driven by rising international tourism. Yet cancellation rates remained high, with missed predictions translating directly into lost revenue and operational inefficiency.
 
-- Tujuan utama dari proyek ini adalah untuk mengembangkan model Machine Learning yang mampu memprediksi kemungkinan pembatalan pemesanan di hotel dibandingkan dengan metode konvensional (rule based non Machine Learning) yang memperoleh nilai f-1 score sebesar 0.48. Dengan model ini, manajemen hotel dapat lebih proaktif dalam mengantisipasi jumlah pembatalan yang mungkin terjadi, sehingga membantu dalam perencanaan dan pengambilan keputusan operasional yang lebih baik. Dengan prediksi yang akurat, hotel dapat menerapkan strategi mitigasi seperti menetapkan kebijakan deposit yang sesuai, merancang promosi khusus, atau menyesuaikan inventaris kamar.
+This project builds a machine learning model to predict which bookings are likely to be cancelled — enabling hotel management to act early, adjust overbooking strategies, and protect revenue before losses occur.
 
-- Model ini diharapkan dapat mengidentifikasi variabel atau atribut yang paling memengaruhi keputusan pembatalan pemesanan. Hal ini memungkinkan manajemen untuk memahami faktor-faktor yang memicu pembatalan dan mengambil langkah-langkah pencegahan yang lebih tepat, sehingga dapat meningkatkan tingkat okupansi dan mengoptimalkan pengalaman pelanggan secara keseluruhan.
+---
 
-- Model ini juga difungsikan untuk membantu pihak manajemen hotel untuk menyeimbangkan antara memenuhi kebutuhan tamu yang tidak melakukan pembatalan dan mengatasi risiko dari pelanggan yang melakukan pembatalan
+## Project Objectives
 
-  
-# Analytical Approach
+- Build a classification model that outperforms the rule-based baseline (F1-score: 0.48)
+- Identify the key features that most influence cancellation decisions
+- Quantify the financial impact of missed cancellation predictions (false negatives)
+- Deliver findings through interactive dashboards for management decision-making
 
-Analisis dimulai dengan eksplorasi data untuk memahami distribusi variabel dan korelasi antara variabel prediktor dengan pembatalan. Berikut tahapan pendekatan analitis yang dapat diambil:
+---
 
-  1.  Data Understanding: informasi data, statistic deskriptif, jumlah missing value, dan distribusi data secara keseluruhan
-  2.  Data Cleaning: menangani missing values, duplicated values, anomalies, data leakage, dan outliers.
-  3.  Exploratory Data Analysis (EDA): Analisis visualisasi untuk memahami pola dan korelasi antar variabel (Q&A based).
-  4.  Data Preparation, Model Development untuk Machine Learning, Hyperparameter Tuning, Feature Importance, Estimasi Keuntungan, dan Limitasi.
-  5.  Kesimpulan dan Rekomendasi.
+## Dataset Overview
 
+| Item | Detail |
+|---|---|
+| Source | [Kaggle — Hotel Booking Demand](https://www.kaggle.com/datasets/jessemostipak/hotel-booking-demand/data) \| [ScienceDirect](https://www.sciencedirect.com/science/article/pii/S2352340918315191) |
+| Raw records | 119,390 rows |
+| Cleaned records | 85,991 rows |
+| Target variable | `is_canceled` (0 = not cancelled, 1 = cancelled) |
+| Class imbalance | ~37% cancellation rate |
+| Period covered | 2015 – 2017 |
+| Hotel types | City Hotel, Resort Hotel |
 
-# Data Understanding
+### Key Features
 
+| Feature | Description |
+|---|---|
+| `lead_time` | Days between booking and check-in date |
+| `adr` | Average Daily Rate — revenue per room per night |
+| `market_segment` | Booking channel (Direct, Online TA, Corporate, etc.) |
+| `deposit_type` | No Deposit / Refundable / Non-Refundable |
+| `stays_in_week_nights` | Number of weekday nights booked |
+| `stays_in_weekend_nights` | Number of weekend nights booked |
+| `is_repeated_guest` | Whether the guest has stayed before |
+| `previous_cancellations` | Number of prior cancellations by the customer |
+| `total_of_special_requests` | Number of special requests made |
 
-|kolom | Penjelasan |
-|---- | ---- |
-| Hotel  | Tipe hotel ( "City Hotel" atau "Resort Hotel")|
-| is_canceled| Status pembatalan pemesanan (0 = tidak dibatalkan, 1 = dibatalkan)|
-| lead_time|Jumlah hari antara waktu pemesanan dan tanggal check-in|
-| arrival_date_year  | Tahun dari tanggal kedatangan |
-| arrival_date_month| Bulan dari tanggal kedatangan|
-| arrival_date_week_number | pada minggu ke berapa tamu akan tiba di hotel|
-| arrival_date_day_of_month| Hari dalam bulan untuk tanggal kedatangan|
-| stays_in_weekend_nights | Jumlah malam menginap pada akhir pekan (Sabtu-Minggu)|
-| stays_in_week_nights | Jumlah malam menginap pada hari kerja (Senin-Jumat)|
-| adults | Jumlah orang dewasa yang terdaftar dalam pemesanan|
-| children| Jumlah anak-anak yang terdaftar dalam pemesanan|
-| babies|Jumlah bayi yang terdaftar dalam pemesanan|
-| meal  | Tipe paket makanan yang dipesan (misalnya: "BB" = Bed & Breakfast, "FB" = Full Board)|
-| country| Kode negara asal pelanggan berdasarkan standar ISO 3166-1 Alpha-3|
-| market_segment |Segmen pasar pemesanan (misalnya: "Direct", "Corporate", "Online TA")|
-| distribution_channel| Saluran distribusi pemesanan (misalnya: "Direct", "Corporate", "TA/TO")|
-| is_repeated_guest | Indikator apakah tamu adalah pelanggan yang menginap berulang (0 = baru, 1 = berulang)|
-| previous_cancellations | Jumlah pembatalan sebelumnya yang dilakukan oleh pelanggan|
-| previous_bookings_not_canceled | Jumlah pemesanan sebelumnya yang tidak dibatalkan oleh pelanggan|
-| reserved_room_type| Tipe kamar yang awalnya dipesan oleh pelanggan|
-| assigned_room_type| Tipe kamar yang sebenarnya diberikan kepada pelanggan|
-| booking_changes  | Jumlah perubahan pemesanan yang dilakukan oleh pelanggan |
-| deposit_type| Jenis deposit yang dilakukan (misalnya: "No Deposit", "Refundable", "Non Refund")|
-| agent |ID agen yang mengatur pemesanan (nilai "NULL" jika tidak ada agen)|
-| company|ID perusahaan yang mengatur pemesanan (nilai "NULL" jika tidak ada perusahaan)|
-| days_in_waiting_list | Jumlah hari pemesanan berada dalam daftar tunggu sebelum dikonfirmasi|
-| customer_type | Tipe pelanggan berdasarkan perilaku pemesanan (misalnya: "Transient", "Contract")|
-| adr | Average Daily Rate (ADR) atau rata-rata pendapatan per kamar per malam yang dipesan|
-| required_car_parking_spaces| Jumlah tempat parkir mobil yang diperlukan oleh pelanggan|
-| total_of_special_requests|Jumlah permintaan khusus yang dibuat oleh pelanggan|
-| reservation_status| Status pemesanan terakhir (misalnya: "Check-Out", "Canceled")|
-| reservation_status_date| Tanggal dari status terakhir pemesanan|
+---
 
+## Methodology
 
-# Limitasi
+### 1. Data Cleaning
+- Handled missing values, duplicates, anomalies, and data leakage
+- Removed outliers to improve model robustness
+- Final dataset: 85,991 cleaned records
 
-Berdasarkan semua informasi limitasi untuk False Positve, False Negative, True Positive, dan True Negative. Dapat kita simpulkan bahwa:
+### 2. Exploratory Data Analysis (EDA)
+- Analyzed cancellation patterns by market segment, season, lead time, and deposit type
+- Identified key behavioral differences between cancelling and non-cancelling guests
+- Visualized findings across hotel type, booking channel, and arrival period
 
-1. False Positive (FP)
+### 3. Baseline Model (Rule-Based)
+- Built a rule-based model using the two highest-correlated features: `lead_time` and `market_segment`
+- Result: **F1-score of 0.48** — established as the benchmark to beat
 
-  Kesalahan False Positive terjadi ketika model memprediksi pembatalan (canceled), tetapi sebenarnya tidak ada pembatalan.
+### 4. Resampling Strategy
+Addressed class imbalance by testing 10 resampling techniques:
 
-  - Karakteristik utama:
+**Oversampling:** Random Oversampling, SMOTE, ADASYN, KMeans SMOTE, Borderline SMOTE
 
-    - Data cenderung berasal dari City Hotel dengan tamu domestik, memesan melalui agen perjalanan online (Online TA) tanpa deposit (No Deposit), dan tidak memiliki permintaan khusus.
-    - Tamu baru dengan riwayat reservasi yang bersih (tidak pernah membatalkan atau mengubah reservasi sebelumnya).
-    - Waktu kedatangan: pertengahan bulan Agustus, musim panas (Summer), hari Senin, dengan reservasi dilakukan pada bulan Februari.
-    - Fitur lainnya seperti: Lead time pendek (99-100 hari), ADR moderat (120.5), dan durasi menginap singkat (1 hari di akhir pekan, 2-3 hari di hari kerja).
+**Undersampling:** Random Undersampling, NeighbourhoodCleaningRule, NearMiss v1, NearMiss v2, TomekLinks
 
-  - Implikasi limitasi:
+➡ **Borderline SMOTE** produced the highest F1-score on Logistic Regression and was selected for full model comparison.
 
-    - Model memiliki kecenderungan untuk salah mengidentifikasi tamu domestik yang memesan melalui agen perjalanan sebagai tamu yang kemungkinan akan membatalkan, meskipun faktanya mereka tidak membatalkan.
+### 5. Model Comparison
+Tested 6 classifiers using Borderline SMOTE:
 
-    - Hal ini menunjukkan bahwa model mungkin terlalu sensitif terhadap market segment Online TA dan City Hotel, sehingga menghasilkan lebih banyak FP.
+| Model | F1 Train | F1 Test |
+|---|---|---|
+| Logistic Regression | 0.61 | 0.60 |
+| KNeighbors Classifier | 0.63 | 0.61 |
+| Gradient Boosting Classifier | 0.67 | 0.66 |
+| AdaBoost Classifier | 0.64 | 0.63 |
+| LightGBM Classifier | 0.66 | 0.65 |
+| **XGBoost Classifier** | **0.669** | **0.677** ✅ |
 
-2. False Negative (FN)
+### 6. Hyperparameter Tuning
+Applied **Bayesian Optimization** to XGBoost:
 
-  Kesalahan False Negative terjadi ketika model tidak memprediksi pembatalan (tidak canceled), tetapi pembatalan sebenarnya terjadi.
+| Metric | Before Tuning | After Tuning |
+|---|---|---|
+| F1 Train | 0.669 | 0.677 |
+| F1 Test | 0.677 | **0.688** ✅ |
+| Precision (class 1) | — | 0.73 |
+| Recall (class 1) | — | 0.65 |
+| Accuracy | — | 0.84 |
 
-  - Karakteristik utama:
+---
 
-    - Sama seperti False Positive, sebagian besar data berasal dari City Hotel, dengan tamu baru yang memesan melalui agen perjalanan online tanpa deposit.
-    - Waktu kedatangan: pertengahan bulan Agustus, musim panas (Summer), hari Senin, dengan reservasi dilakukan pada bulan Januari.
-    - Fitur lainnya seperti: Lead time moderat (73 hari), ADR moderat (117.6), dan durasi menginap singkat (1 hari di akhir pekan, 2-3 hari di hari kerja).
+## Business Impact
 
-  - Implikasi limitasi:
+### Revenue Risk from False Negatives
 
-    - Model cenderung kurang sensitif terhadap karakteristik tamu dengan pola pemesanan pendek/moderat dan musim tertentu (Summer), sehingga mengakibatkan tidak memprediksi pembatalan meskipun ada kecenderungan untuk membatalkan.
-    - Hal ini menunjukkan model perlu dioptimalkan untuk lebih baik mengenali pola dari tamu yang benar-benar membatalkan.
+False Negatives (FN) are the most costly model errors — cancellations that actually occurred but the model failed to predict. These represent bookings where the hotel was caught off-guard with no time to resell the room.
 
-3. True Positive (TP)
+```
+Revenue at Risk = FN × ADR × Average Length of Stay
 
-    Klasifikasi True Positive terjadi ketika model memprediksi pembatalan (canceled) dan pembatalan benar-benar terjadi.
+= 1,669 missed cancellations
+× €107.84 (mean ADR)
+× 3.66 nights (avg. weekend + weekday stay)
 
-    - Karakteristik utama:
+= €658,079 estimated revenue at risk
+```
 
-      - Tamu yang benar-benar membatalkan biasanya memiliki Lead time yang panjang (118-119 hari) dan berasal dari City Hotel.
-      - Reservasi dilakukan melalui agen perjalanan online tanpa deposit, dan tamu baru dengan riwayat reservasi bersih.
-      - Waktu kedatangan: pertengahan bulan Agustus, musim panas (Summer), hari Selasa, dengan reservasi dilakukan pada bulan Januari.
-      - Fitur lainnya seperti: ADR moderat (120.94), durasi menginap singkat (1 hari di akhir pekan, 3 hari di hari kerja), tanpa permintaan khusus.
+### Confusion Matrix Results
 
-    - Implikasi limitasi:
+| | Predicted: No Cancel | Predicted: Cancel |
+|---|---|---|
+| **Actual: No Cancel** | TN: 11,297 ✅ | FP: 1,134 ⚠️ |
+| **Actual: Cancel** | FN: 1,669 ❌ | TP: 3,099 ✅ |
 
-      - Model sudah cukup baik dalam memprediksi pembatalan dengan karakteristik ini, tetapi cenderung mengandalkan pola seperti lead time panjang dan musim tertentu (Summer).
-      - Model mungkin kurang fleksibel untuk mengidentifikasi pembatalan di luar pola ini.
+**False Positives (1,134)** also carry a cost — guests flagged as likely to cancel but who actually showed up. Acting on these predictions aggressively (e.g. overselling rooms) risks turning away real guests, damaging hotel reputation.
 
-4. True Negative (TN)
+### Overall Financial Context
+- Revenue from non-cancelled bookings: **€22,930,425**
+- Potential revenue lost to cancellations: **€11,456,861**
+- Cancellations represent **33.32%** of total potential revenue
 
-    Klasifikasi True Negative terjadi ketika model memprediksi tidak ada pembatalan (not canceled), dan memang tidak ada pembatalan.
+---
 
-    - Karakteristik utama:
+## Key Findings & Recommendations
 
-      - Sama seperti kategori lain, sebagian besar data berasal dari City Hotel dengan tamu domestik/internasional yang memesan melalui agen perjalanan online tanpa deposit.
-      - Waktu kedatangan: pertengahan bulan Agustus, musim panas (Summer), hari Selasa, dengan reservasi dilakukan pada bulan Januari.
-      - Fitur lainnya seperti: Lead time pendek (65 hari), ADR lebih rendah (102.12), durasi menginap singkat (1 hari di akhir pekan, 2 hari di hari kerja), tanpa permintaan khusus.
+### Top Cancellation Drivers (Feature Importance)
 
-    - Implikasi limitasi:
+1. **Market Segment (Online TA)** — Guests booking via Online Travel Agents cancel at significantly higher rates
+2. **Required Car Parking Spaces** — Guests not requiring parking cancel more frequently
+3. **Deposit Type (Non-Refundable)** — Counterintuitively, non-refundable deposits correlate with higher cancellation intent
+4. **International vs. Domestic Guests** — International guests cancel less frequently than domestic guests
 
-      - Model cukup akurat dalam mengenali tamu yang tidak akan membatalkan reservasi, terutama untuk tamu dengan lead time pendek, riwayat reservasi bersih, dan tanpa permintaan khusus.
-      - Namun, seperti pada kategori lainnya, model mungkin terlalu bergantung pada pola tertentu.
+### Recommendations for Hotel Management
 
+**To reduce False Negatives (missed cancellations → empty rooms):**
+- Implement a tiered cancellation policy:
+  - >7 days before check-in: full refund
+  - 3–7 days before: partial refund (50%)
+  - <3 days / same day: no refund
+- Offer last-minute pricing on vacant rooms through OTA platforms
+- Target corporate and group bookings which show lower cancellation rates
 
-# Kesimpulan
+**To reduce False Positives (unnecessary overbooking):**
+- Use model predictions as a guide, not a trigger — combine with historical cancellation rates per season
+- Establish partnerships with nearby hotels to handle relocation efficiently if overbooking occurs
+- Prepare guest compensation protocols (upgrades, discounts) to protect reputation
 
-## 5.1 Kesimpulan Model:
+**Seasonal strategy:**
+- July and August show the highest cancellation volumes — apply stricter policies during peak season
+- Off-peak periods benefit from flexible promotions and last-minute deals to recover lost occupancy
 
-**Faktor Utama**:
+---
 
-1.  **Variabel atau atribut yang paling memengaruhi pembatalan pemesanan**:
-  Berdasarkan analisis, variabel yang paling memengaruhi kemungkinan pembatalan pemesanan adalah:
+## Tech Stack
 
-  - Market Segment (Online TA): Pelanggan yang memesan melalui Online Travel Agents (OTA) memiliki kecenderungan lebih tinggi untuk membatalkan reservasi.
-  - Required Car Parking Spaces: Pelanggan yang tidak membutuhkan tempat parkir paling sering membatalkan dibandingkan dengan yang membutuhkan ruang parkir.
-  - Deposit Type (Non-Refundable): Ketentuan deposit yang tidak dapat dikembalikan memengaruhi keputusan pelanggan dalam membatalkan pemesanan.
-  - Is Overseas: Tamu internasional paling jarang melakukan pembatalan dibandingkan tamu lokal.
+| Category | Tools |
+|---|---|
+| Language | Python |
+| Data Manipulation | Pandas, NumPy |
+| Visualization | Matplotlib, Seaborn |
+| Machine Learning | Scikit-learn, XGBoost, LightGBM |
+| Resampling | Imbalanced-learn (SMOTE, ADASYN, BorderlineSMOTE) |
+| Hyperparameter Tuning | Bayesian Optimization (Optuna / Scikit-Optimize) |
+| BI & Dashboards | Power BI, Tableau |
+| Environment | Google Colab |
+| Version Control | GitHub |
 
-**Akurasi Model**:
+---
 
-2.  **Tingkat akurasi model dalam memprediksi pembatalan pemesanan**: Model terbaik, XGBoost Classifier, menunjukkan akurasi sebesar 87% pada data train dan 84% pada data test. Hal ini menunjukkan bahwa model mampu menangkap pola pembatalan dengan baik pada sebagian besar data.
+## Repository Structure
 
-3.  **Performa model berdasarkan metrik utama seperti recall dan precision**:
+```
+Hotel-Reservation-Cancellation-Predictions-in-Portugal/
+│
+├── Fi_Pro_Beta.ipynb                        # Main notebook
+├── Hotel Booking Cancellation Dashboard.pbix # Power BI dashboard
+├── Hotel_Bookings_Cleaned.xlsx              # Cleaned dataset
+├── Hotel_Bookings_Cleaned_Canceled.xlsx     # Cancelled bookings subset
+├── Hotel_Bookings_Cleaned_Not_Canceled.xlsx # Non-cancelled bookings subset
+├── hotel_bookings.csv                       # Raw dataset
+├── pipeline_xgb_tuned.joblib               # Saved tuned XGBoost model
+└── README.md
+```
 
-  - Pada data test:
+---
 
-      Precision:
+## 🔗 Links
 
-      Untuk kelas "0" (tidak membatalkan): 87%
-
-      Untuk kelas "1" (membatalkan): 73%
-
-      Recall:
-    
-      Untuk kelas "0": 91%
-
-      Untuk kelas "1": 65%
-
-      Dengan F1-score sebesar 0.69 untuk kelas pembatalan (kelas "1"), model memiliki keseimbangan yang cukup baik antara precision dan recall, meskipun recall untuk kelas "1" sedikit lebih rendah.
-
-**Keunggulan Machine Learning**:
-
-4.  **Penerapan machine learning dibandingkan metode konvensional**:
-
-    - Rule-Based Model: Menggunakan fitur yang secara statistik memiliki korelasi tertinggi terhadap pembatalan (lead_time dan market_segment). Model ini hanya mencapai F1-score sebesar 0.48, menunjukkan keterbatasan dalam menangkap kompleksitas data.
-
-    - Machine Learning Model: Dengan menggunakan metode SMOTE untuk penyeimbangan data dan XGBoost Classifier sebagai model terbaik, diperoleh F1-score sebesar 0.6866 setelah tuning.
-
-    - Keunggulan Utama Machine Learning:
-      
-      - Kemampuan menangkap pola kompleks: Machine learning dapat menganalisis interaksi antar fitur yang tidak terlihat dengan metode konvensional.
-
-      - Optimisasi melalui tuning: Hyperparameter tuning dan balancing data meningkatkan performa model secara signifikan.
-
-      - Fleksibilitas data: Model mampu menangani berbagai jenis data (numerik dan kategorikal) melalui proses encoding yang optimal.
-
-**Kesimpulan**:
-
-Machine learning terbukti memberikan keunggulan dalam prediksi pembatalan pemesanan, dengan hasil yang lebih akurat dan metrik yang lebih baik dibandingkan metode rule-based. Model XGBoost Classifier yang digunakan mampu menangkap pola-pola penting dalam data, menjadikannya solusi yang efektif untuk analisis pembatalan pemesanan.
-
-F-1 score dipilih karena memberikan keseimbangan antara precision dan recall. Dalam konteks bisnis hotel, baik false positive maupun negative memberikan dampak kerugian, walaupu secara umum false negative lebih banyak menghasilkan kerugian finansial, tetapi false positive dapat mempengaruhi reputasi hotel. Reputasi sendiri merupakan aspek krusial dalam bisnis bidang jasa dan pelayanan.
-
-
-
-## 5.2.1 Rekomendasi bagi Manajemen Hotel based on Machine Learning Model:
-
-Berdasarkan analisis implikasi dari False Positive dan False Negative pada prediksi pembatalan reservasi, berikut adalah rekomendasi strategis bagi hotel untuk mengelola risiko serta memaksimalkan keuntungan:
-
-1. Mengurangi Risiko False Positive (Overbooking yang Tidak Tepat)
-  - Kebijakan Overbooking yang Lebih Terukur
-    
-    - Gunakan prediksi pembatalan model sebagai guideline, tetapi kombinasikan dengan data historis tingkat pembatalan untuk menentukan tingkat overbooking optimal.
-    - Terapkan overbooking hanya pada musim atau periode tertentu (misalnya, high season) dengan tingkat pembatalan yang tinggi berdasarkan data sebelumnya.
-
-  - Meningkatkan Fleksibilitas Manajemen Kamar
-
-    - Siapkan backup rooms untuk kasus overbooking, seperti kamar yang jarang digunakan.
-    - Bangun kemitraan strategis dengan hotel lain di sekitar untuk menangani relokasi tamu secara efisien.
-
-  - Strategi Komunikasi untuk Mitigasi Risiko Reputasi
-
-    - Jika terjadi overbooking, tawarkan kompensasi yang menarik (upgrade kamar gratis pada kunjungan berikutnya, diskon, atau layanan tambahan) untuk menjaga kepuasan tamu.
-    - Aktifkan tim layanan pelanggan khusus untuk menangani keluhan terkait overbooking dengan cepat.
-
-2. Mengurangi Risiko False Negative (Kamar Kosong yang Tidak Terserap)
-  - Kebijakan Pembatalan yang Adaptif
-
-    - Terapkan kebijakan pembatalan progresif (tiered cancellation policy), seperti:
-      - Refund penuh untuk pembatalan >7 hari sebelum check-in.
-      - Refund parsial untuk pembatalan 3-7 hari sebelum check-in.
-      - Tidak ada refund untuk pembatalan mendadak (<3 hari).
-
-    - Tawarkan fleksibilitas tambahan seperti reschedule gratis agar tamu tidak sepenuhnya membatalkan reservasi.
-
-  - Strategi Penjualan Kamar Kosong
-
-    - Gunakan platform pemesanan last-minute untuk memasarkan kamar kosong dengan harga diskon.
-    - Berikan penawaran khusus untuk segmen tamu lokal (staycation deals).
-
-  - Pendekatan Dinamis untuk Pemesanan Grup atau Korporat
-
-    - Fokuskan promosi ke tamu grup atau korporat yang lebih stabil dan memiliki probabilitas pembatalan lebih rendah.
-
-
-3.  Mitigasi Risiko Finansial dan Reputasi
-  - Asuransi Pembatalan Reservasi
-    
-      - Kerja sama dengan penyedia asuransi untuk menawarkan opsi asuransi pembatalan kepada tamu saat melakukan reservasi.
-      - Biaya asuransi dapat membantu menutupi kerugian finansial akibat pembatalan mendadak.
-
-  - Manajemen Ulasan dan Reputasi
-
-      - Pantau dan tanggapi ulasan di platform secara aktif untuk memitigasi dampak negatif pembatalan atau overbooking.
-      - Berikan transparansi penuh terkait kebijakan pembatalan agar tamu memahami dan merasa adil.
-
-Kesimpulan
-
-Rekomendasi ini bertujuan untuk mencapai keseimbangan antara efisiensi operasional, pengalaman tamu, dan profitabilitas. Dengan mengoptimalkan prediksi model, kebijakan yang fleksibel, dan komunikasi yang baik, hotel dapat meminimalkan dampak negatif dari false positive dan false negative secara signifikan.
-
-
-## 5.2.2 Rekomendasi bagi Manajemen Hotel based on EDA:
-
-Berdasarkan analisis dataset hotel booking demand, terdapat beberapa rekomendasi strategis yang dapat diimplementasikan oleh hotel di Portugal untuk mengurangi pembatalan reservasi dan memaksimalkan pendapatan berdasarkan hasil dari Explanatory Data Analysis:
-
-**Berdasarkan Karkterisitk Waktu**
-- Tamu paling sering melakukan pembatalan pada hari kedatangan (_last minute cancellation_). Selain itu, banyak juga yang melakukan pembatalan pada h-1, h-3, h-4, h-6 sebelum kedatangan. 
-
-Rekomendasi: Pihak hotel bisa menyesuaikan kebijakan pembatalannya (_cancelation policy_). Misalnya, dengan mengadopsi kebijakan pembatalan bertahap yang lebih ketat, contohnya:
-
-- -- > Pembatalan lebih dari 7 hari sebelum kedatangan: Tidak ada biaya pembatalan.
-- -- > Pembatalan H-6 sampai H-1: Biaya pembatalan misalnya 50% dari biaya pemesanan.
-- -- > Pembatalan H-0 (Hari Kedatangan): Biaya pemesanan atau deposito tidak dikembalikan atau hanya dikembalikan 20%.
-
-- Hasil analisis waktu juga menunjukkan bahwa keputusan pembatalan lebih dipengaruhi oleh faktor makro (misalnya musim atau bulan kedatangan) dibandingkan mikro (tanggal spesifik). Oleh karena itu, dalam konteks waktu kedatangan, akan lebih relevan jika strategi manajemen pembatalan lebih difokuskan pada pola waktu yang lebih luas daripada tanggal spesifik.
-
-Rekomendasi: siapkan kebijakan pembatalan yang berbeda untuk periode puncak dan non-puncak. Kebijakan pada periode dengan pembatalan paling sering, seperti bulan Juli dan Agustus, harus dibedakan dengan kebijakan pada periode lainnya.
-
-**Berdasarkan Karakteristik Tamu**
-- Untuk customer keluarga yang memiliki anak-anak atau bayi, pihak hotel dapat menawarkan fasilitas yang mendukung mereka agar tidak mudah bosan seperti adanya playgrond khusus untuk anak ataupun bayi. Ataupun untuk customer yang membawa orang tua, pihak hotel dapat menyiapkan tremp atau akses lewat khusus untuk orang tua yang menggunakan kursi roda. Pihak hotel juga dapat memberikan program loyalitas kepada customer, sehingga customer yang sering menginap di hotel dapat merasakan keistimewaan ketika sering menginap di hotel tersebut, ataupun customer yang loyal dapat memberikan testimoninya ke orang sekitar tentang pelayanan yang sangat luarbiasa yang diberikan oleh hotel, sehingga customer yang mendengarkan cerita tersebut berminat untuk mencoba menginap pada hotel tersebut.
-
-**Berdasarkan Karakteristik Pemesanan**
-- Hotel dapat memberikan diskon untuk para customer yang melakukan pemesanan langsung pada situs hotel dan memberikan kewajiban deposito ataupun kebijakan untuk tidak bisa melakukan pengembalian dana apabila memesan menggunakan agen. Selanjutnya untuk pelanggan tipe Contract, hotel dapat meberikan penawaran khusus dan opsi komitmen lebih awal, sementara untuk pelanggan Transient, berikan pengalaman yang lebih personal agar mereka merasa lebih dihargai atau diperhatikan. Dan untuk mengantisipasi adanya peningkatan pengunjung, pihak hotel dapat memastikan bahwa lahan parkir yang dimiliki cukup untuk menampung kendaraan yang dibawa oleh customer. Kemudian untuk  hotel berjenis resort hotel dapat menawarkan paket bundling all-inclusive untuk meningkatkan pengalaman tamu.  Kemudian pihak hotel dapat melakukan promosi pada sosial media dengan menggunakan multi-language sebab banyaknya customer yang berasal dari luar negeri.
-
-**Berdasarkan Analisa Keuangan**
-- ADR atau tarif harian kamar rata-rata untuk pesanan yang dibatalkan sedikit lebih tinggi daripada yang tidak dibatalkan, terutama pada beberapa periode tertentu. Misalnya, saat ADR >80 euro pada minggu ke-50 tahun 2015, reservasi lebih sering dibatalkan dibandingkan saat ADR-nya < 60 euro.
-
-- Pada high season (musim puncak), ADR tidak begitu mempengaruhi tingkat pembatalan.
-
-Rekomendasi: Pada periode non-high season, diskon atau layanan premium seperti late check-out atau makan malam gratis dapat diberikan untuk menarik lebih banyak tamu pada periode-periode tersebut.
-
-- Pendapatan hotel dari reservasi yang tidak dibatalkan mencapai €22,930,425.50, sementara potensi pendapatan dari reservasi yang dibatalkan adalah €11,456,861.02. Jika tidak ada reservasi yang dibatalkan sama sekali, maka total pendapatan hotel yang dapat diperoleh adalah €34,387,286.52. Dengan demikian, pembatalan reservasi menyumbang kerugian potensial sebesar 33.32% dari total pendapatan yang mungkin diraih jika tidak ada pembatalan. Untuk meminimalkan kerugian ini, hotel dapat menerapkan strategi kebijakan non-refundable atau mengenakan penalti pada pembatalan yang dilakukan dalam periode tertentu sebelum tanggal check-in. Selain itu, dengan meningkatkan promosi untuk menarik tamu last-minute, hotel dapat memanfaatkan kembali kamar yang kosong akibat pembatalan. Strategi ini tidak hanya mengurangi dampak finansial dari pembatalan, tetapi juga membantu menjaga tingkat okupansi kamar, yang pada akhirnya berkontribusi pada stabilitas pendapatan hotel.
-
-
-
-
-Sebagai salah satu destinasi wisata utama, hotel di Portugal dapat memanfaatkan strategi berbasis data untuk meningkatkan daya saing. Dengan memberikan layanan responsif, promosi relevan, dan fasilitas yang baik, hotel dapat menciptakan pengalaman tamu yang optimal, mengurangi tingkat pembatalan, dan memaksimalkan pendapatan. Strategi ini juga membantu menjaga reputasi dan menarik lebih banyak tamu di masa mendatang.
+| Resource | Link |
+|---|---|
+| 📓 Notebook (Google Colab) | [Open Notebook](https://colab.research.google.com/drive/1vgdbcMkygOm8bZQcYS1MVrx6550NtOYy) |
+| 📊 Power BI Dashboard | [View on Google Drive](https://drive.google.com/file/d/1q71xAqTkJ28e35QRMruEUWXb78h8ZcB4/view?usp=sharing) |
+| 📈 Tableau Dashboard | *(Add your own Tableau Public link here)* |
+| 📁 Dataset (Kaggle) | [Hotel Booking Demand](https://www.kaggle.com/datasets/jessemostipak/hotel-booking-demand/data) |
