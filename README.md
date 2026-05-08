@@ -12,8 +12,9 @@ Team: Mochamad Aditya P. Y. K · Tamara Puspita Ayu · Yoga Lafrianto
 > **Power BI Dashboard**
 > 📎 [View on Google Drive](https://drive.google.com/file/d/1q71xAqTkJ28e35QRMruEUWXb78h8ZcB4/view?usp=sharing)
 
-> **Tableau Dashboard**
-> 📎 
+> **Power BI Dashboard**
+> ![Power BI Dashboard]
+> 📎 [View on Google Drive](https://drive.google.com/file/d/1q71xAqTkJ28e35QRMruEUWXb78h8ZcB4/view?usp=drive_link)
 
 
 
@@ -232,5 +233,4 @@ Hotel-Reservation-Cancellation-Predictions-in-Portugal/
 |---|---|
 | 📓 Notebook (Google Colab) | [Open Notebook](https://colab.research.google.com/drive/1vgdbcMkygOm8bZQcYS1MVrx6550NtOYy) |
 | 📊 Power BI Dashboard | [View on Google Drive](https://drive.google.com/file/d/1q71xAqTkJ28e35QRMruEUWXb78h8ZcB4/view?usp=sharing) |
-| 📈 Tableau Dashboard | *(Add your own Tableau Public link here)* |
 | 📁 Dataset (Kaggle) | [Hotel Booking Demand](https://www.kaggle.com/datasets/jessemostipak/hotel-booking-demand/data) |
