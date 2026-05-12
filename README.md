@@ -36,7 +36,7 @@ Hotel cancellations represent one of the most costly operational challenges in t
 
 Between 2015–2017, Portugal's hotel industry experienced significant growth driven by rising international tourism. Yet cancellation rates remained high, with missed predictions translating directly into lost revenue and operational inefficiency.
 
-This project builds a machine learning model to predict which bookings are likely to be cancelled — enabling hotel management to act early, adjust overbooking strategies, and protect revenue before losses occur.
+This project builds a machine learning model to predict which bookings are likely to be cancelled. Enabling hotel management to act early, adjust overbooking strategies, and protect revenue before losses occur.
 
 ---
 
@@ -66,7 +66,7 @@ This project builds a machine learning model to predict which bookings are likel
 | Feature | Description |
 |---|---|
 | `lead_time` | Days between booking and check-in date |
-| `adr` | Average Daily Rate — revenue per room per night |
+| `adr` | Average Daily Rate - revenue per room per night |
 | `market_segment` | Booking channel (Direct, Online TA, Corporate, etc.) |
 | `deposit_type` | No Deposit / Refundable / Non-Refundable |
 | `stays_in_week_nights` | Number of weekday nights booked |
@@ -91,7 +91,7 @@ This project builds a machine learning model to predict which bookings are likel
 
 ### 3. Baseline Model (Rule-Based)
 - Built a rule-based model using the two highest-correlated features: `lead_time` and `market_segment`
-- Result: **F1-score of 0.48** — established as the benchmark to beat
+- Result: **F1-score of 0.48**; established as the benchmark to beat
 
 ### 4. Resampling Strategy
 Addressed class imbalance by testing 10 resampling techniques:
@@ -121,9 +121,9 @@ Applied **Bayesian Optimization** to XGBoost:
 |---|---|---|
 | F1 Train | 0.669 | 0.677 |
 | F1 Test | 0.677 | **0.688** ✅ |
-| Precision (class 1) | — | 0.73 |
-| Recall (class 1) | — | 0.65 |
-| Accuracy | — | 0.84 |
+| Precision (class 1) | - | 0.73 |
+| Recall (class 1) | - | 0.65 |
+| Accuracy | - | 0.84 |
 
 ---
 
@@ -131,7 +131,7 @@ Applied **Bayesian Optimization** to XGBoost:
 
 ### Revenue Risk from False Negatives
 
-False Negatives (FN) are the most costly model errors — cancellations that actually occurred but the model failed to predict. These represent bookings where the hotel was caught off-guard with no time to resell the room.
+False Negatives (FN) are the most costly model errors; cancellations that actually occurred but the model failed to predict. These represent bookings where the hotel was caught off-guard with no time to resell the room.
 
 ```
 Revenue at Risk = FN × ADR × Average Length of Stay
@@ -150,7 +150,7 @@ Revenue at Risk = FN × ADR × Average Length of Stay
 | **Actual: No Cancel** | TN: 11,297 ✅ | FP: 1,134 ⚠️ |
 | **Actual: Cancel** | FN: 1,669 ❌ | TP: 3,099 ✅ |
 
-**False Positives (1,134)** also carry a cost — guests flagged as likely to cancel but who actually showed up. Acting on these predictions aggressively (e.g. overselling rooms) risks turning away real guests, damaging hotel reputation.
+**False Positives (1,134)** also carry a cost guests flagged as likely to cancel but who actually showed up. Acting on these predictions aggressively (e.g. overselling rooms) risks turning away real guests, damaging hotel reputation.
 
 ### Overall Financial Context
 - Revenue from non-cancelled bookings: **€22,930,425**
@@ -163,10 +163,10 @@ Revenue at Risk = FN × ADR × Average Length of Stay
 
 ### Top Cancellation Drivers (Feature Importance)
 
-1. **Market Segment (Online TA)** — Guests booking via Online Travel Agents cancel at significantly higher rates
-2. **Required Car Parking Spaces** — Guests not requiring parking cancel more frequently
-3. **Deposit Type (Non-Refundable)** — Counterintuitively, non-refundable deposits correlate with higher cancellation intent
-4. **International vs. Domestic Guests** — International guests cancel less frequently than domestic guests
+1. **Market Segment (Online TA)** - Guests booking via Online Travel Agents cancel at significantly higher rates
+2. **Required Car Parking Spaces** - Guests not requiring parking cancel more frequently
+3. **Deposit Type (Non-Refundable)** - Counterintuitively, non-refundable deposits correlate with higher cancellation intent
+4. **International vs. Domestic Guests** - International guests cancel less frequently than domestic guests
 
 ### Recommendations for Hotel Management
 
@@ -179,12 +179,12 @@ Revenue at Risk = FN × ADR × Average Length of Stay
 - Target corporate and group bookings which show lower cancellation rates
 
 **To reduce False Positives (unnecessary overbooking):**
-- Use model predictions as a guide, not a trigger — combine with historical cancellation rates per season
+- Use model predictions as a guide, not a trigger. Combine with historical cancellation rates per season
 - Establish partnerships with nearby hotels to handle relocation efficiently if overbooking occurs
 - Prepare guest compensation protocols (upgrades, discounts) to protect reputation
 
 **Seasonal strategy:**
-- July and August show the highest cancellation volumes — apply stricter policies during peak season
+- July and August show the highest cancellation volumes, apply stricter policies during peak season
 - Off-peak periods benefit from flexible promotions and last-minute deals to recover lost occupancy
 
 ---
