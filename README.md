@@ -121,9 +121,9 @@ Applied **Bayesian Optimization** to XGBoost:
 |---|---|---|
 | F1 Train | 0.669 | 0.677 |
 | F1 Test | 0.677 | **0.688** ✅ |
-| Precision (class 1) | - | 0.73 |
-| Recall (class 1) | - | 0.65 |
-| Accuracy | - | 0.84 |
+| Precision (class 1) | 0.73 | 0.73 |
+| Recall (class 1) | 0.64 | 0.65 |
+| Accuracy | 0.83 | 0.84 |
 
 ---
 
