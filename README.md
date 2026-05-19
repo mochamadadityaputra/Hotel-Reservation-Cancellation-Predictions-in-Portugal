@@ -11,7 +11,7 @@ Team: Mochamad Aditya P. Y. K · Tamara Puspita Ayu · Yoga Lafrianto
 
 > **Power BI Dashboard**
 📎![Power BI Dashboard](Screenshot_Dashboard_Power_BI.jpg)
- ![View on Google Drive](https://drive.google.com/file/d/1q71xAqTkJ28e35QRMruEUWXb78h8ZcB4/view?usp=sharing)
+[View on Google Drive](https://drive.google.com/file/d/1q71xAqTkJ28e35QRMruEUWXb78h8ZcB4/view?usp=sharing)
 
 > **Tableau Dashboard**
 📎![Tableau Dashboard](Tableau_Overview_Dash.jpg)
