@@ -15,7 +15,7 @@ Team: Mochamad Aditya P. Y. K · Tamara Puspita Ayu · Yoga Lafrianto
 
 > **Tableau Dashboard**
 📎![Tableau Dashboard](Tableau_Overview_Dash.jpg)
-📎 [View Interactive Tableau Dashboard](https://public.tableau.com/views/HotelReservationCancellationPredictionsinPortugal_dash/Dashboard1?:language=en-US&publish=yes&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
+[View Interactive Tableau Dashboard](https://public.tableau.com/views/HotelReservationCancellationPredictionsinPortugal_dash/Dashboard1?:language=en-US&publish=yes&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
 
 ---
 
